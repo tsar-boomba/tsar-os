@@ -1,13 +1,11 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '@/styles/Home.module.scss';
 import Layout from '@/components/Layout';
+import styles from '@/styles/Home.module.scss';
 
 const Home: NextPage = () => {
 	return (
 		<Layout>
-			<h1>Attendance</h1>
+			<h1 className={styles.test}>Attendance</h1>
 		</Layout>
 	);
 };
