@@ -1,5 +1,11 @@
-@use 'colors' as *;
+@use 'colors.module' as *;
+@use 'mixins.module' as *;
 
-.test {
-	color: $primary;
+.start {
+	@include flex-center;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	font-size: 2rem;
+	font-weight: bold;
+	background-color: $primary;
+	border-radius: 0.5rem;
 }

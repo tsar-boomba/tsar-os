@@ -1,0 +1,19 @@
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin section {
+	.wrapper {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		width: 100vw;
+	}
+
+	.title {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+}
