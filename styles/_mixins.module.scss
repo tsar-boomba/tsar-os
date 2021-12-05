@@ -6,12 +6,13 @@
 	justify-content: center;
 }
 
-@mixin section($background: $secondary) {
+@mixin section($background-color: $secondary) {
 	.wrapper {
 		display: flex;
 		flex-flow: column;
 		align-items: center;
 		width: 100%;
+		background-color: $background-color;
 	}
 
 	.title {
