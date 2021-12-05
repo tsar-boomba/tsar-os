@@ -1,6 +1,7 @@
 import styles from './Layout.module.scss';
 import Head from 'next/head';
 import Header from '../Header';
+import Fixed from '../Header/Fixed';
 
 interface LayoutProps {
 	title?: string;
@@ -16,6 +17,9 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
 			</Head>
 			<div className={styles.container}>
 				<Header />
+
+				{/* Fixed version of header */}
+				<Fixed />
 				<main className={styles.main}>{children}</main>
 			</div>
 		</>

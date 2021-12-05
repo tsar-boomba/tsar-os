@@ -6,23 +6,9 @@ import HeaderButton from './HeaderButton';
 const Header = () => {
 	const router = useRouter();
 	const isHome = router.pathname === '/';
-	const [top, setTop] = useState(true);
-
-	useEffect(() => {
-		const onScroll = () => {
-			if (window.scrollY > 0) {
-				setTop(false);
-			} else {
-				setTop(true);
-			}
-		};
-
-		window.addEventListener('scroll', onScroll);
-		return () => window.removeEventListener('scroll', onScroll);
-	}, []);
 
 	return (
-		<div className={top ? styles.wrapper : `${styles.wrapper} ${styles.fixed}`}>
+		<div className={styles.wrapper}>
 			<button
 				className={styles.title}
 				onClick={() =>

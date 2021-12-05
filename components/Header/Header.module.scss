@@ -11,10 +11,11 @@
 .fixed {
 	background-color: $secondary;
 	position: fixed;
-	top: 0;
+	top: -100;
 	left: 0;
-	opacity: 0.85;
-	backdrop-filter: blur(3px);
+	width: 100vw;
+	z-index: 1;
+	transition: top 0.3s ease;
 }
 
 .title {
