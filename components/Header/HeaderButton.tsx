@@ -6,7 +6,7 @@ interface HeaderButtonProps {
 
 const HeaderButton: React.FC<HeaderButtonProps> = ({ children, onClick }) => {
 	return (
-		<button className={styles['header-button']} onClick={onClick}>
+		<button className={styles.button} onClick={onClick}>
 			{children}
 		</button>
 	);

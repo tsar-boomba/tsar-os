@@ -1,9 +1,20 @@
 @use 'colors.module' as *;
 @use 'mixins.module' as *;
 
-.header-wrapper {
+.wrapper {
 	@include flex-center;
+	width: 100%;
 	background-color: $secondary;
+	z-index: 1;
+}
+
+.fixed {
+	background-color: $secondary;
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: 0.85;
+	backdrop-filter: blur(3px);
 }
 
 .title {
@@ -25,7 +36,7 @@
 	height: 59px;
 }
 
-.header-button {
+.button {
 	font-size: 1.5rem;
 	font-weight: 600;
 	height: 100%;

@@ -36,6 +36,7 @@ const Home: NextPage = () => {
 			<Features />
 			<Technology />
 			<About />
+			<div style={{ height: 5000 }}>I exist to add scroll</div>
 		</Layout>
 	);
 };
