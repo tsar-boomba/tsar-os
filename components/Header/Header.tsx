@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import HeaderButton from './HeaderButton';
 

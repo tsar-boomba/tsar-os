@@ -1,7 +1,8 @@
 import styles from './Layout.module.scss';
 import Head from 'next/head';
 import Header from '../Header';
-import Fixed from '../Header/Fixed';
+import dynamic from 'next/dynamic';
+const Fixed = dynamic(() => import('../Header/Fixed'));
 
 interface LayoutProps {
 	title?: string;
