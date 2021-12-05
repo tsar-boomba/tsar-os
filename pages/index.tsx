@@ -21,7 +21,7 @@ const Home: NextPage = () => {
 			<div
 				style={{
 					display: 'grid',
-					width: '100vw',
+					width: '100%',
 					height: '40vh',
 					placeItems: 'center',
 					backgroundColor: 'red',

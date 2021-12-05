@@ -1,15 +1,17 @@
+@use 'colors.module' as *;
+
 @mixin flex-center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-@mixin section {
+@mixin section($background: $secondary) {
 	.wrapper {
 		display: flex;
 		flex-flow: column;
 		align-items: center;
-		width: 100vw;
+		width: 100%;
 	}
 
 	.title {
