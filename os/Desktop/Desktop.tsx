@@ -1,7 +1,11 @@
+import Main from './components/Main';
+import Taskbar from './components/Taskbar';
+
 const Desktop = () => {
 	return (
-		<div>
-			<h1>Desktop UI</h1>
+		<div style={{ display: 'flex', flexFlow: 'column', width: '100%', height: '100%' }}>
+			<Main />
+			<Taskbar />
 		</div>
 	);
 };

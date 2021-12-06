@@ -1,0 +1,21 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	flex-grow: 1;
+	backdrop-filter: blur(3px);
+	background-color: #525252;
+	color: #f1f8ff;
+}
+
+.logo {
+	font-size: 300%;
+	font-weight: bold;
+	padding: 0 0.5rem 0 0.5rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.app-icon {
+	margin: 0 0.5rem 0 0.5rem;
+}

@@ -4,12 +4,12 @@ import Header from '../Header';
 import dynamic from 'next/dynamic';
 const Fixed = dynamic(() => import('../Header/Fixed'));
 
-interface LayoutProps {
+interface Props {
 	title?: string;
 	description?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
+const Layout: React.FC<Props> = ({ children, title, description }) => {
 	return (
 		<>
 			<Head>

@@ -1,0 +1,19 @@
+@use 'mixins.module' as *;
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 95%;
+	padding: 1rem;
+	color: #f1f8ff;
+}
+
+.background {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	user-select: none;
+	z-index: -1;
+}
