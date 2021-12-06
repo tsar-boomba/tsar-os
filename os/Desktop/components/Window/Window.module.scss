@@ -1,0 +1,7 @@
+@use 'mixins.module' as *;
+
+.container {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
