@@ -36,7 +36,50 @@ const Window: React.VFC<Props> = ({ App, appData }) => {
 			<App appSettings={appSettings} setAppSettings={setAppSettings} windowRef={windowRef} />
 
 			{/* Window resizers */}
-			<Resizer onMouseDown={(e) => handleResizeMouseDown(e, 'top')} />
+			<Resizer
+				onMouseDown={handleResizeMouseDown('top', windowRef)}
+				style={{
+					position: 'absolute',
+					top: -5,
+					left: 0,
+					width: '100%',
+					height: 5,
+					cursor: 'ns-resize',
+				}}
+			/>
+			<Resizer
+				onMouseDown={handleResizeMouseDown('right', windowRef)}
+				style={{
+					position: 'absolute',
+					top: 0,
+					right: -5,
+					height: '100%',
+					width: 5,
+					cursor: 'ew-resize',
+				}}
+			/>
+			<Resizer
+				onMouseDown={handleResizeMouseDown('bottom', windowRef)}
+				style={{
+					position: 'absolute',
+					bottom: -5,
+					left: 0,
+					width: '100%',
+					height: 5,
+					cursor: 'ns-resize',
+				}}
+			/>
+			<Resizer
+				onMouseDown={handleResizeMouseDown('left', windowRef)}
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: -5,
+					height: '100%',
+					width: 5,
+					cursor: 'ew-resize',
+				}}
+			/>
 		</div>
 	);
 };
