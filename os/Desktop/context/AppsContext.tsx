@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { createContext } from 'react';
-import { AppProps } from '../components/Window/Window';
+import { AppProps, TitleBarProps } from '../components/Window/Window';
 
 interface App {
 	component: React.VFC<AppProps>;
+	titleBarComponent?: React.VFC<TitleBarProps>;
 	name: string;
 	icon: string;
 }

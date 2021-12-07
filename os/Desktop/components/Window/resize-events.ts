@@ -23,6 +23,7 @@ export const handleResizeMouseDown = (side: Sides, windowRef: React.RefObject<HT
 	const heightConstrain = 500;
 
 	const handleMouseMove = (e: MouseEvent) => {
+		// make sure mouse is in window
 		if (
 			e.clientX <= 5 ||
 			e.clientY <= 5 ||

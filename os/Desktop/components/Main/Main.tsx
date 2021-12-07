@@ -4,6 +4,7 @@ import defaultBackground from '@/public/images/default-desktop.jpg';
 import { useContext } from 'react';
 import { AppsContext } from '../../context/AppsContext';
 import Window from '../Window';
+import DefaultTitleBar from '../Window/DefaultTitleBar';
 
 const Main = () => {
 	const { opened } = useContext(AppsContext);
@@ -13,6 +14,7 @@ const Main = () => {
 			{opened.map((App, index) => (
 				<Window
 					App={App.component}
+					TitleBar={App.titleBarComponent || DefaultTitleBar}
 					appData={{ name: App.name, icon: App.icon }}
 					key={index}
 				/>
