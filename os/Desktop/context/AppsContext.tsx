@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { createContext } from 'react';
 import { AppProps } from '../components/Window/Window';
 
+interface App {
+	component: React.VFC<AppProps>;
+	name: string;
+	icon: string;
+}
+
 interface appValues {
-	apps: {
-		name: string;
-		icon: string;
-	}[];
-	opened: React.VFC<AppProps>[];
+	apps: App[];
+	opened: App[];
 	setOpened: React.Dispatch<React.SetStateAction<appValues['opened']>>;
 }
 
@@ -19,10 +22,12 @@ const AppsContextProvider: React.FC = ({ children }) => {
 	// placeholder apps
 	const apps: appValues['apps'] = [
 		{
+			component: () => <p>discord</p>,
 			name: 'discord',
 			icon: 'url',
 		},
 		{
+			component: () => <p>chrome</p>,
 			name: 'chrome',
 			icon: 'url',
 		},

@@ -4,7 +4,7 @@ import AppIcon from './AppIcon';
 import styles from './Taskbar.module.scss';
 
 const Taskbar = () => {
-	const apps = useContext(AppsContext);
+	const { apps } = useContext(AppsContext);
 
 	return (
 		<div className={styles.wrapper}>

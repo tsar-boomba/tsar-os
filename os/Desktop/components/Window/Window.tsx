@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import styles from 'Window.module.scss';
+import styles from './Window.module.scss';
 
 export interface AppProps {
 	appSettings: {
-		draggable: boolean;
 		defaultWidth: number;
 		defaultHeight: number;
 	};
@@ -11,18 +10,20 @@ export interface AppProps {
 }
 
 interface Props {
-	App: React.FC<AppProps> | React.VFC<AppProps>;
+	App: React.VFC<AppProps>;
 }
 
 const Window: React.VFC<Props> = ({ App }) => {
 	const [appSettings, setAppSettings] = useState<AppProps['appSettings']>({
-		draggable: true,
-		defaultWidth: 600,
-		defaultHeight: 400,
+		defaultWidth: 1000,
+		defaultHeight: 600,
 	});
 
 	return (
-		<div className={styles.container}>
+		<div
+			style={{ width: appSettings.defaultWidth, height: appSettings.defaultHeight }}
+			className={styles.container}
+		>
 			<App appSettings={appSettings} setAppSettings={setAppSettings} />
 		</div>
 	);
