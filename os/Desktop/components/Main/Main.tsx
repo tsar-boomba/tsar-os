@@ -11,7 +11,11 @@ const Main = () => {
 	return (
 		<div className={styles.container}>
 			{opened.map((App, index) => (
-				<Window App={App.component} key={index} />
+				<Window
+					App={App.component}
+					appData={{ name: App.name, icon: App.icon }}
+					key={index}
+				/>
 			))}
 			<div className={styles.background}>
 				<Image src={defaultBackground} layout='fill' alt='desktop background' />

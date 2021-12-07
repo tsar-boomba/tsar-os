@@ -1,8 +1,14 @@
 @use 'mixins.module' as *;
 
 .container {
+	position: absolute;
 	display: flex;
 	flex-flow: column;
 	align-items: center;
 	background-color: dimgrey;
+	resize: both;
+	overflow: hidden;
+	border: 2px solid #000000;
+	width: 500px; // min
+	height: 500px; // min
 }
