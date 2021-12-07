@@ -1,6 +1,14 @@
 import React from 'react';
 
-type Sides = 'top' | 'right' | 'bottom' | 'left' | 'corner';
+type Sides =
+	| 'top'
+	| 'right'
+	| 'bottom'
+	| 'left'
+	| 'top-right'
+	| 'bottom-right'
+	| 'bottom-left'
+	| 'top-left';
 export const handleResizeMouseDown = (side: Sides, windowRef: React.RefObject<HTMLDivElement>) => {
 	// globals for all handlers
 	let mouseX = 0;
@@ -8,37 +16,73 @@ export const handleResizeMouseDown = (side: Sides, windowRef: React.RefObject<HT
 
 	let elHeight = 0;
 	let elWidth = 0;
+	let elLeft = 0;
+	let elTop = 0;
+
+	const widthConstrain = 500;
+	const heightConstrain = 500;
 
 	const handleMouseMove = (e: MouseEvent) => {
+		if (
+			e.clientX <= 5 ||
+			e.clientY <= 5 ||
+			e.clientX >= innerWidth - 5 ||
+			e.clientY >= innerHeight - 5
+		)
+			return;
 		if (!windowRef.current) throw new Error('No element found on window ref.');
 		const windowEl = windowRef.current;
 		const dx = e.clientX - mouseX;
 		const dy = e.clientY - mouseY;
 
-		const newWidth = elWidth + dx;
-		const newHeight = elHeight + dy;
-
-		if (newWidth <= 400) return;
-		if (newHeight <= 400) return;
+		const newLeft = elLeft + dx;
+		const newTop = elTop + dy;
 
 		switch (side) {
 			case 'top':
-				windowEl.style.height = `${newHeight}px`;
+				if (elHeight - dy < heightConstrain) return;
+				windowEl.style.top = `${newTop}px`;
+				windowEl.style.height = `${elHeight - dy}px`;
 				break;
 			case 'right':
-				windowEl.style.width = `${newWidth}px`;
+				if (elWidth + dx < widthConstrain) return;
+				windowEl.style.width = `${elWidth + dx}px`;
 				break;
 			case 'bottom':
-				windowEl.style.height = `${newHeight}px`;
+				if (elHeight + dy < heightConstrain) return;
+				windowEl.style.height = `${elHeight + dy}px`;
 				break;
 			case 'left':
-				windowEl.style.width = `${newWidth}px`;
+				if (elWidth - dx < widthConstrain) return;
+				windowEl.style.left = `${newLeft}px`;
+				windowEl.style.width = `${elWidth - dx}px`;
 				break;
-			case 'corner':
-				windowEl.style.width = `${newWidth}px`;
-				windowEl.style.height = `${newHeight}px`;
+			case 'top-right':
+				if (elWidth + dx < widthConstrain || elHeight - dy < heightConstrain) return;
+				windowEl.style.top = `${newTop}px`;
+				windowEl.style.width = `${elWidth + dx}px`;
+				windowEl.style.height = `${elHeight - dy}px`;
+				break;
+			case 'bottom-right':
+				if (elWidth + dx < widthConstrain || elHeight + dy < heightConstrain) return;
+				windowEl.style.width = `${elWidth + dx}px`;
+				windowEl.style.height = `${elHeight + dy}px`;
+				break;
+			case 'bottom-left':
+				if (elWidth - dx < widthConstrain || elHeight + dy < heightConstrain) return;
+				windowEl.style.left = `${newLeft}px`;
+				windowEl.style.width = `${elWidth - dx}px`;
+				windowEl.style.height = `${elHeight + dy}px`;
+				break;
+			case 'top-left':
+				if (elWidth - dx < widthConstrain || elHeight - dy < heightConstrain) return;
+				windowEl.style.top = `${newTop}px`;
+				windowEl.style.left = `${newLeft}px`;
+				windowEl.style.width = `${elWidth - dx}px`;
+				windowEl.style.height = `${elHeight - dy}px`;
 				break;
 		}
+		windowEl.dispatchEvent(new Event('resize'));
 	};
 
 	const handleMouseUp = () => {
@@ -50,13 +94,15 @@ export const handleResizeMouseDown = (side: Sides, windowRef: React.RefObject<HT
 		e.preventDefault();
 		if (!windowRef.current) throw new Error('No element found on window ref.');
 		const windowEl = windowRef.current;
-		console.log('mouse down');
+
 		mouseX = e.clientX;
 		mouseY = e.clientY;
 
 		const styles = window.getComputedStyle(windowEl);
 		elHeight = parseInt(styles.height);
 		elWidth = parseInt(styles.width);
+		elTop = parseInt(styles.top);
+		elLeft = parseInt(styles.left);
 
 		document.addEventListener('mousemove', handleMouseMove);
 		document.addEventListener('mouseup', handleMouseUp);
