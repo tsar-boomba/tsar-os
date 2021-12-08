@@ -11,6 +11,7 @@ interface Props {
 
 const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 	const { apps, opened, setOpened } = useContext(AppsContext);
+	const isOpen = typeof opened.find((app) => app.name === name) !== 'undefined';
 
 	const handleIconClick = useCallback(() => {
 		const thisApp = apps.find((app) => app.name === name);
@@ -23,12 +24,18 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 	}, [opened]);
 
 	return (
-		<div onClick={handleIconClick} className={styles['app-icon']}>
+		<div
+			onClick={handleIconClick}
+			className={styles['app-icon']}
+			style={{ backgroundColor: isOpen ? '#808080' : '' }}
+		>
 			{icon.includes('https://') ? (
 				<Image src={discordIcon} alt={`${name} icon`} width={40} height={40} />
 			) : (
 				name
 			)}
+
+			{isOpen && <div className={`${styles['bottom-border']}`} />}
 		</div>
 	);
 };

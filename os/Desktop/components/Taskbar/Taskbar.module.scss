@@ -26,6 +26,7 @@
 
 .app-icon {
 	@include flex-center;
+	position: relative;
 	height: 100%;
 	padding: 0 0.5rem 0 0.5rem;
 	cursor: pointer;
@@ -34,6 +35,24 @@
 
 	&:hover {
 		background-color: #646464;
+
+		.bottom-border {
+			position: absolute;
+			bottom: 0;
+			width: 95%;
+			height: 4px;
+			background-color: #ffffff;
+			transition: width 0.15s ease;
+		}
+	}
+
+	.bottom-border {
+		position: absolute;
+		bottom: 0;
+		width: 80%;
+		height: 4px;
+		background-color: #ffffff;
+		transition: width 0.15s ease;
 	}
 }
 
