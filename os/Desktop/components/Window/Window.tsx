@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { AppsContext } from '../../context/AppsContext';
 import Resizers from './Resizers';
 import styles from './Window.module.scss';
