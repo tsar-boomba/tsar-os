@@ -1,4 +1,7 @@
-export const handleTitleBarDrag = (windowRef: React.RefObject<HTMLDivElement>) => {
+export const handleTitleBarDrag = (
+	windowRef: React.RefObject<HTMLDivElement>,
+	buttonsRef: React.RefObject<HTMLDivElement>,
+) => {
 	let mouseX = 0;
 	let mouseY = 0;
 
@@ -40,8 +43,13 @@ export const handleTitleBarDrag = (windowRef: React.RefObject<HTMLDivElement>) =
 		document.removeEventListener('mouseup', handleMouseUp);
 	};
 
-	return (e: React.MouseEvent) => {
-		e.preventDefault();
+	return (e: React.MouseEvent & { target: any }) => {
+		if (buttonsRef.current) {
+			if (buttonsRef.current.contains(e.target)) {
+				e.stopPropagation();
+				return;
+			}
+		}
 		if (!windowRef.current) throw new Error('No element found on titleBar ref.');
 		const windowEl = windowRef.current;
 

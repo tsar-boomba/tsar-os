@@ -27,6 +27,11 @@
 	flex-grow: 1;
 }
 
+.title-bar-button-container {
+	display: flex;
+	align-items: center;
+}
+
 .title-bar-button {
 	@include flex-center;
 	height: 100%;
