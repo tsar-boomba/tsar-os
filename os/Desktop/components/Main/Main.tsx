@@ -20,7 +20,12 @@ const Main = () => {
 				/>
 			))}
 			<div className={styles.background}>
-				<Image src={defaultBackground} layout='fill' alt='desktop background' />
+				<Image
+					src={defaultBackground}
+					layout='fill'
+					priority={true}
+					alt='desktop background'
+				/>
 			</div>
 		</div>
 	);

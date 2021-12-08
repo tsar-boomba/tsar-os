@@ -1,3 +1,5 @@
+@use 'mixins.module' as *;
+
 .wrapper {
 	display: flex;
 	align-items: center;
@@ -16,6 +18,32 @@
 	user-select: none;
 }
 
+.app-icon-wrapper {
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+}
+
 .app-icon {
-	margin: 0 0.5rem 0 0.5rem;
+	@include flex-center;
+	height: 100%;
+	padding: 0 0.5rem 0 0.5rem;
+	cursor: pointer;
+	background-color: transparent;
+	transition: background-color 0.3s ease;
+
+	&:hover {
+		background-color: #646464;
+	}
+}
+
+.time {
+	@include flex-center;
+	flex-flow: column;
+	height: 100%;
+	padding: 0 0.5rem 0 0.5rem;
+
+	p {
+		margin: 0;
+	}
 }

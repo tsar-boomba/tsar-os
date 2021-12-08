@@ -25,7 +25,7 @@ const AppsContextProvider: React.FC = ({ children }) => {
 		{
 			component: () => <p>discord</p>,
 			name: 'discord',
-			icon: 'url',
+			icon: 'https://discord.com/assets/847541504914fd33810e70a0ea73177e.ico',
 		},
 		{
 			component: () => <p>chrome</p>,

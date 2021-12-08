@@ -1,6 +1,8 @@
 import { useCallback, useContext } from 'react';
 import { AppsContext } from '../../context/AppsContext';
 import styles from './Taskbar.module.scss';
+import Image from 'next/image';
+import discordIcon from '@/public/images/discord-icon.ico';
 
 interface Props {
 	name: string;
@@ -22,7 +24,11 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 
 	return (
 		<div onClick={handleIconClick} className={styles['app-icon']}>
-			{name}
+			{icon.includes('https://') ? (
+				<Image src={discordIcon} alt={`${name} icon`} width={40} height={40} />
+			) : (
+				name
+			)}
 		</div>
 	);
 };
