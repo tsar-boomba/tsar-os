@@ -11,12 +11,12 @@ const Main = () => {
 
 	return (
 		<div className={styles.container}>
-			{opened.map((App, index) => (
+			{opened.map((App) => (
 				<Window
 					App={App.component}
 					TitleBar={App.titleBarComponent || DefaultTitleBar}
 					appData={{ name: App.name, icon: App.icon }}
-					key={index}
+					key={App.name}
 				/>
 			))}
 			<div className={styles.background}>

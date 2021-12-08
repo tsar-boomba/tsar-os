@@ -29,8 +29,9 @@ export const handleResizeMouseDown = (side: Sides, windowRef: React.RefObject<HT
 			e.clientY <= 5 ||
 			e.clientX >= innerWidth - 5 ||
 			e.clientY >= innerHeight - 5
-		)
+		) {
 			return;
+		}
 		if (!windowRef.current) throw new Error('No element found on window ref.');
 		const windowEl = windowRef.current;
 		const dx = e.clientX - mouseX;

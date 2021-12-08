@@ -17,8 +17,6 @@ export const handleTitleBarDrag = (windowRef: React.RefObject<HTMLDivElement>) =
 		const newRight = elRight - dx;
 		const newBottom = elBottom - dy;
 
-		console.log({ innerWidth, innerHeight });
-
 		// validating movement
 		if (
 			newLeft < 0 ||

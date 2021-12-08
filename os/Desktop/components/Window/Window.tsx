@@ -37,13 +37,15 @@ const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 	const titleBarRef = useRef<HTMLDivElement>(null);
 	const windowRef = useRef<HTMLDivElement>(null);
 	const { opened, setOpened } = useContext(AppsContext);
+	console.log(opened);
 
-	const closeApp = useCallback(() => {
+	const closeApp = () => {
 		const thisAppIndex = opened.findIndex((app) => app.name === appData.name);
 		const newOpened = [...opened];
 		newOpened.splice(thisAppIndex, 1);
 		setOpened(newOpened);
-	}, []);
+		console.log(opened);
+	};
 
 	return (
 		<div
