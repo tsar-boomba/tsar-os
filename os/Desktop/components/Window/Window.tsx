@@ -24,7 +24,7 @@ interface Props {
 	App: React.VFC<AppProps>;
 	TitleBar: React.VFC<TitleBarProps>;
 	name: string;
-	icon: string;
+	icon: string | StaticImageData;
 	setData: OSApp['setData'];
 	data: OSApp['data'];
 }

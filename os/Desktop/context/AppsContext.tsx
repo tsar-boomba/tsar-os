@@ -7,7 +7,7 @@ export interface OSApp {
 	component: React.VFC<AppProps>;
 	titleBarComponent?: React.VFC<TitleBarProps>;
 	name: string;
-	icon: string;
+	icon: string | StaticImageData;
 	setData: React.Dispatch<React.SetStateAction<OSApp['data']>>;
 	data: {
 		minimized: boolean;
