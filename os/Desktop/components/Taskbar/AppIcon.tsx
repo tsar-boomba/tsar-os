@@ -18,10 +18,16 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 		if (!thisApp) throw new Error('This app was not found in the context.');
 
 		// if an app with this name is opened, do not proceed
-		if (opened.find((app) => app.name === thisApp.name)) return;
+		if (opened.find((app) => app.name === thisApp.name)) {
+			if (thisApp.data.minimized) {
+				thisApp.data.set({ ...thisApp.data, minimized: false });
+				return;
+			}
+			return;
+		}
 
 		setOpened([...opened, thisApp]);
-	}, [opened]);
+	}, [opened, apps]);
 
 	return (
 		<div
@@ -32,7 +38,7 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 			onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isOpen ? '#8d8d8d' : '')}
 		>
 			{icon.includes('https://') ? (
-				<Image src={discordIcon} alt={`${name} icon`} width={40} height={40} />
+				<Image src={discordIcon} alt={`${name} icon`} width={30} height={30} />
 			) : (
 				name
 			)}

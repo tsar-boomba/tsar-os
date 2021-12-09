@@ -6,9 +6,9 @@ import styles from './Window.module.scss';
 const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 	content,
 	closeWindow,
-	minimizeWindow,
 	titleBarRef,
 	windowRef,
+	data,
 }) => {
 	const buttonsRef = useRef<HTMLDivElement>(null);
 
@@ -20,7 +20,14 @@ const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 		>
 			<p className={styles['title-bar-content']}>{content}</p>
 			<div ref={buttonsRef} className={styles['title-bar-button-container']}>
-				<button style={{ fontSize: 16 }} className={styles['title-bar-button']}>
+				<button
+					onClick={() => {
+						console.log('minimize!');
+						data.set({ ...data, minimized: true });
+					}}
+					style={{ fontSize: 16 }}
+					className={styles['title-bar-button']}
+				>
 					-
 				</button>
 				<button style={{ fontSize: 16 }} className={styles['title-bar-button']}>
