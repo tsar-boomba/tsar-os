@@ -3,7 +3,7 @@ import { AppsContext, OSApp } from '../../context/AppsContext';
 import Resizers from './Resizers';
 import styles from './Window.module.scss';
 
-export interface AppProps {
+interface BaseProps {
 	closeWindow: () => void;
 	titleBarRef: React.RefObject<HTMLDivElement>;
 	windowRef: React.RefObject<HTMLDivElement>;
@@ -11,13 +11,10 @@ export interface AppProps {
 	setData: OSApp['setData'];
 }
 
-export interface TitleBarProps {
+export interface AppProps extends BaseProps {}
+
+export interface TitleBarProps extends BaseProps {
 	content: string;
-	closeWindow: () => void;
-	titleBarRef: React.RefObject<HTMLDivElement>;
-	windowRef: React.RefObject<HTMLDivElement>;
-	data: OSApp['data'];
-	setData: OSApp['setData'];
 }
 
 interface Props {
