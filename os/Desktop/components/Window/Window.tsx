@@ -54,8 +54,6 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 
 	// handling minimize state
 	useEffect(() => {
-		let lastTop = '';
-		let lastLeft = '';
 		if (data.minimized) {
 			console.log('minimizing');
 			if (!windowRef.current) throw new Error('No window element found on ref.');
@@ -64,8 +62,18 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 			const LOGO_WIDTH = 36;
 			const APP_ICON_WIDTH = 46;
 			const targetX = LOGO_WIDTH + (thisAppIndex + 1) * (APP_ICON_WIDTH / 2);
-			lastTop = windowEl.style.top;
-			lastLeft = windowEl.style.left;
+
+			// saving last position
+			const styles = getComputedStyle(windowEl);
+			setData({
+				...data,
+				last: {
+					top: styles.top,
+					left: styles.left,
+					width: styles.width,
+					height: styles.height,
+				},
+			});
 
 			windowEl.style.transition = 'top 0.3s ease, bottom 0.3s ease, transform 0.3s ease';
 
@@ -77,11 +85,15 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 		} else {
 			if (!windowRef.current) throw new Error('No window element found on ref.');
 			const windowEl = windowRef.current;
-			windowEl.style.left = lastLeft;
-			windowEl.style.bottom = lastTop;
+
+			// returning to last position
+			windowEl.style.left = data.last.left;
+			windowEl.style.top = data.last.top;
+			windowEl.style.width = data.last.width;
+			windowEl.style.height = data.last.height;
 			windowEl.style.transform = 'scale(1)';
 		}
-	});
+	}, [data.minimized]);
 
 	const handleFocus = () => {
 		const tempOpened = [...opened];

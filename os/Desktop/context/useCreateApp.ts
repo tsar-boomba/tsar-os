@@ -7,6 +7,12 @@ const useCreateApp = ({ component, titleBarComponent, name, icon }: WithoutData)
 	const [appData, setAppData] = useState<OSApp['data']>({
 		minimized: false,
 		fullscreen: false,
+		last: {
+			top: '',
+			left: '',
+			width: '',
+			height: '',
+		},
 	});
 
 	return { component, titleBarComponent, name, icon, setData: setAppData, data: { ...appData } };

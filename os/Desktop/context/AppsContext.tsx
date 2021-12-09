@@ -12,6 +12,12 @@ export interface OSApp {
 	data: {
 		minimized: boolean;
 		fullscreen: boolean;
+		last: {
+			top: string;
+			left: string;
+			width: string;
+			height: string;
+		};
 	};
 }
 

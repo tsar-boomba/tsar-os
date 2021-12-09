@@ -22,11 +22,7 @@ const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 			<p className={styles['title-bar-content']}>{content}</p>
 			<div ref={buttonsRef} className={styles['title-bar-button-container']}>
 				<button
-					onClick={() => {
-						console.log('minimize!');
-						console.log(data);
-						setData({ ...data, minimized: true });
-					}}
+					onClick={() => setData({ ...data, minimized: true })}
 					style={{ fontSize: 16 }}
 					className={styles['title-bar-button']}
 				>
