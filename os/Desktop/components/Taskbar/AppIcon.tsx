@@ -27,7 +27,9 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 		<div
 			onClick={handleIconClick}
 			className={styles['app-icon']}
-			style={{ backgroundColor: isOpen ? '#808080' : '' }}
+			style={{ backgroundColor: isOpen ? '#8d8d8d' : '' }}
+			onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#a5a5a5')}
+			onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isOpen ? '#8d8d8d' : '')}
 		>
 			{icon.includes('https://') ? (
 				<Image src={discordIcon} alt={`${name} icon`} width={40} height={40} />
