@@ -7,17 +7,18 @@ import Window from '../Window';
 import DefaultTitleBar from '../Window/DefaultTitleBar';
 
 const Main = () => {
-	const { opened } = useContext(AppsContext);
+	const { opened, apps } = useContext(AppsContext);
 
 	return (
 		<div className={styles.container}>
-			{opened.map(({ component, titleBarComponent, name, icon, data }) => (
+			{opened.map(({ component, titleBarComponent, name, icon }, index) => (
 				<Window
 					App={component}
 					TitleBar={titleBarComponent || DefaultTitleBar}
 					name={name}
 					icon={icon}
-					data={data}
+					setData={apps[index].setData}
+					data={apps[index].data}
 					key={name}
 				/>
 			))}

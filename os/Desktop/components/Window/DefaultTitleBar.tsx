@@ -9,6 +9,7 @@ const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 	titleBarRef,
 	windowRef,
 	data,
+	setData,
 }) => {
 	const buttonsRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +24,8 @@ const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 				<button
 					onClick={() => {
 						console.log('minimize!');
-						data.set({ ...data, minimized: true });
+						console.log(data);
+						setData({ ...data, minimized: true });
 					}}
 					style={{ fontSize: 16 }}
 					className={styles['title-bar-button']}

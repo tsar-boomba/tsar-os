@@ -20,7 +20,8 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 		// if an app with this name is opened, do not proceed
 		if (opened.find((app) => app.name === thisApp.name)) {
 			if (thisApp.data.minimized) {
-				thisApp.data.set({ ...thisApp.data, minimized: false });
+				console.log(thisApp.data);
+				thisApp.setData({ ...thisApp.data, minimized: false });
 				return;
 			}
 			return;

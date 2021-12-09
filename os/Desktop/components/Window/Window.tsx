@@ -12,6 +12,7 @@ export interface AppProps {
 	closeWindow: () => void;
 	windowRef: React.RefObject<HTMLDivElement>;
 	data: OSApp['data'];
+	setData: OSApp['setData'];
 }
 
 export interface TitleBarProps {
@@ -20,6 +21,7 @@ export interface TitleBarProps {
 	titleBarRef: React.RefObject<HTMLDivElement>;
 	windowRef: React.RefObject<HTMLDivElement>;
 	data: OSApp['data'];
+	setData: OSApp['setData'];
 }
 
 interface Props {
@@ -27,10 +29,11 @@ interface Props {
 	TitleBar: React.VFC<TitleBarProps>;
 	name: string;
 	icon: string;
+	setData: OSApp['setData'];
 	data: OSApp['data'];
 }
 
-const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, data }) => {
+const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) => {
 	const { apps, opened, setOpened } = useContext(AppsContext);
 	const [appSettings, setAppSettings] = useState<AppProps['appSettings']>({
 		minimized: false,
@@ -51,7 +54,7 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, data }) => {
 
 	// handling minimize state
 	useEffect(() => {
-		let lastBottom = '';
+		let lastTop = '';
 		let lastLeft = '';
 		if (data.minimized) {
 			console.log('minimizing');
@@ -59,28 +62,26 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, data }) => {
 			const windowEl = windowRef.current;
 			const thisAppIndex = apps.findIndex((app) => app.name === name);
 			const LOGO_WIDTH = 36;
-			const APP_LOGO_WIDTH = 46;
-			const targetX = LOGO_WIDTH + (thisAppIndex + 1) * (APP_LOGO_WIDTH / 2);
-			lastBottom = windowEl.style.bottom;
+			const APP_ICON_WIDTH = 46;
+			const targetX = LOGO_WIDTH + (thisAppIndex + 1) * (APP_ICON_WIDTH / 2);
+			lastTop = windowEl.style.top;
 			lastLeft = windowEl.style.left;
 
-			for (let i = 0; i < 1000; i++) {
-				windowEl.style.left = `${parseInt(windowEl.style.left) / 2}px`;
-				windowEl.style.bottom = `${parseInt(windowEl.style.bottom) / 2}px`;
-				windowEl.style.transform = `scale(${parseInt(windowEl.style.scale) / 2})`;
-			}
+			windowEl.style.transition = 'top 0.3s ease, bottom 0.3s ease, transform 0.3s ease';
 
 			windowEl.style.left = `${targetX}px`;
-			windowEl.style.bottom = '0px';
+			windowEl.style.top = '100%';
 			windowEl.style.transform = 'scale(0)';
+
+			windowEl.style.transition = '';
 		} else {
 			if (!windowRef.current) throw new Error('No window element found on ref.');
 			const windowEl = windowRef.current;
 			windowEl.style.left = lastLeft;
-			windowEl.style.bottom = lastBottom;
+			windowEl.style.bottom = lastTop;
 			windowEl.style.transform = 'scale(1)';
 		}
-	}, [data]);
+	});
 
 	const handleFocus = () => {
 		const tempOpened = [...opened];
@@ -102,6 +103,7 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, data }) => {
 				titleBarRef={titleBarRef}
 				windowRef={windowRef}
 				data={data}
+				setData={setData}
 			/>
 			<App
 				appSettings={appSettings}
@@ -109,6 +111,7 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, data }) => {
 				closeWindow={closeWindow}
 				windowRef={windowRef}
 				data={data}
+				setData={setData}
 			/>
 
 			{/* Window resizers */}

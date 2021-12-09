@@ -8,10 +8,10 @@ export interface OSApp {
 	titleBarComponent?: React.VFC<TitleBarProps>;
 	name: string;
 	icon: string;
+	setData: React.Dispatch<React.SetStateAction<OSApp['data']>>;
 	data: {
 		minimized: boolean;
 		fullscreen: boolean;
-		set: React.Dispatch<React.SetStateAction<OSApp['data']>>;
 	};
 }
 
