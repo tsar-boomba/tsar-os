@@ -16,6 +16,7 @@
 	padding: 0 0.5rem 0 0.5rem;
 	cursor: pointer;
 	user-select: none;
+	cursor: pointer;
 }
 
 .app-icon-wrapper {
@@ -32,6 +33,7 @@
 	cursor: pointer;
 	background-color: transparent;
 	transition: background-color 0.3s ease;
+	cursor: pointer;
 
 	&:hover {
 		background-color: #a5a5a5;
