@@ -11,31 +11,32 @@ interface Props {
 
 const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 	const { apps, opened, setOpened } = useContext(AppsContext);
+	const thisApp = apps.find((app) => app.name === name);
+	if (!thisApp) throw new Error('This app was not found in the context.');
 	const isOpen = typeof opened.find((app) => app.name === name) !== 'undefined';
 
-	const handleIconClick = useCallback(() => {
-		const thisApp = apps.find((app) => app.name === name);
-		if (!thisApp) throw new Error('This app was not found in the context.');
+	const defaultBGColor = isOpen && !thisApp.data.minimized ? '#8d8d8d' : '';
 
+	const handleIconClick = () => {
 		// if an app with this name is opened, do not proceed
 		if (opened.find((app) => app.name === thisApp.name)) {
 			if (thisApp.data.minimized) {
-				thisApp.setData({ ...thisApp.data, minimized: false });
-				return;
+				return thisApp.setData({ ...thisApp.data, minimized: false });
+			} else {
+				return thisApp.setData({ ...thisApp.data, minimized: true });
 			}
-			return;
 		}
 
 		setOpened([...opened, thisApp]);
-	}, [opened, apps]);
+	};
 
 	return (
 		<div
 			onClick={handleIconClick}
 			className={styles['app-icon']}
-			style={{ backgroundColor: isOpen ? '#8d8d8d' : '' }}
+			style={{ backgroundColor: defaultBGColor }}
 			onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#a5a5a5')}
-			onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = isOpen ? '#8d8d8d' : '')}
+			onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = defaultBGColor)}
 		>
 			{icon.includes('https://') ? (
 				<Image src={discordIcon} alt={`${name} icon`} width={30} height={30} />
