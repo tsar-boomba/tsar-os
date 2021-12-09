@@ -8,15 +8,15 @@ export interface AppProps {
 		minimized: boolean;
 	};
 	setAppSettings: React.Dispatch<React.SetStateAction<AppProps['appSettings']>>;
-	closeApp: () => void;
-	minimizeApp: () => void;
+	closeWindow: () => void;
+	minimizeWindow: () => void;
 	windowRef: React.RefObject<HTMLDivElement>;
 }
 
 export interface TitleBarProps {
 	content: string;
-	closeApp: () => void;
-	minimizeApp: () => void;
+	closeWindow: () => void;
+	minimizeWindow: () => void;
 	titleBarRef: React.RefObject<HTMLDivElement>;
 	windowRef: React.RefObject<HTMLDivElement>;
 }
@@ -44,13 +44,13 @@ const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 	// updating this window's zIndex when opened changes
 	useEffect(() => setWindowIndex(opened.findIndex((app) => app.name === appData.name)), [opened]);
 
-	const closeApp = () => {
+	const closeWindow = () => {
 		const newOpened = [...opened];
 		newOpened.splice(windowIndex, 1);
 		setOpened(newOpened);
 	};
 
-	const minimizeApp = () => {};
+	const minimizeWindow = () => {};
 
 	const handleFocus = () => {
 		const tempOpened = [...opened];
@@ -68,16 +68,16 @@ const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 		>
 			<TitleBar
 				content={appData.name}
-				closeApp={closeApp}
-				minimizeApp={minimizeApp}
+				closeWindow={closeWindow}
+				minimizeWindow={minimizeWindow}
 				titleBarRef={titleBarRef}
 				windowRef={windowRef}
 			/>
 			<App
 				appSettings={appSettings}
 				setAppSettings={setAppSettings}
-				closeApp={closeApp}
-				minimizeApp={minimizeApp}
+				closeWindow={closeWindow}
+				minimizeWindow={minimizeWindow}
 				windowRef={windowRef}
 			/>
 

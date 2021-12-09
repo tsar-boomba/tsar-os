@@ -5,8 +5,8 @@ import styles from './Window.module.scss';
 
 const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 	content,
-	closeApp,
-	minimizeApp,
+	closeWindow,
+	minimizeWindow,
 	titleBarRef,
 	windowRef,
 }) => {
@@ -26,7 +26,7 @@ const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 				<button style={{ fontSize: 16 }} className={styles['title-bar-button']}>
 					□
 				</button>
-				<button onClick={closeApp} className={styles['title-bar-button']}>
+				<button onClick={closeWindow} className={styles['title-bar-button']}>
 					X
 				</button>
 			</div>
