@@ -6,6 +6,7 @@ import styles from './Window.module.scss';
 const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 	content,
 	closeApp,
+	minimizeApp,
 	titleBarRef,
 	windowRef,
 }) => {

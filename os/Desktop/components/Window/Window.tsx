@@ -5,17 +5,18 @@ import styles from './Window.module.scss';
 
 export interface AppProps {
 	appSettings: {
-		width: number;
-		height: number;
+		minimized: boolean;
 	};
 	setAppSettings: React.Dispatch<React.SetStateAction<AppProps['appSettings']>>;
 	closeApp: () => void;
+	minimizeApp: () => void;
 	windowRef: React.RefObject<HTMLDivElement>;
 }
 
 export interface TitleBarProps {
 	content: string;
 	closeApp: () => void;
+	minimizeApp: () => void;
 	titleBarRef: React.RefObject<HTMLDivElement>;
 	windowRef: React.RefObject<HTMLDivElement>;
 }
@@ -32,8 +33,7 @@ interface Props {
 const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 	const { opened, setOpened } = useContext(AppsContext);
 	const [appSettings, setAppSettings] = useState<AppProps['appSettings']>({
-		width: 1000,
-		height: 600,
+		minimized: false,
 	});
 	const titleBarRef = useRef<HTMLDivElement>(null);
 	const windowRef = useRef<HTMLDivElement>(null);
@@ -49,6 +49,8 @@ const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 		newOpened.splice(windowIndex, 1);
 		setOpened(newOpened);
 	};
+
+	const minimizeApp = () => {};
 
 	const handleFocus = () => {
 		const tempOpened = [...opened];
@@ -67,6 +69,7 @@ const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 			<TitleBar
 				content={appData.name}
 				closeApp={closeApp}
+				minimizeApp={minimizeApp}
 				titleBarRef={titleBarRef}
 				windowRef={windowRef}
 			/>
@@ -74,6 +77,7 @@ const Window: React.VFC<Props> = ({ App, TitleBar, appData }) => {
 				appSettings={appSettings}
 				setAppSettings={setAppSettings}
 				closeApp={closeApp}
+				minimizeApp={minimizeApp}
 				windowRef={windowRef}
 			/>
 
