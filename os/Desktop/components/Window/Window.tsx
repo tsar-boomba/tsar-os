@@ -49,6 +49,9 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 		windowEl.style.transition =
 			'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
 
+		const removeTransition = () => (windowEl.style.transition = '');
+		windowEl.addEventListener('transitionend', removeTransition);
+
 		if (data.minimized) {
 			const thisAppIndex = apps.findIndex((app) => app.name === name);
 			const LOGO_WIDTH = 36;
@@ -77,7 +80,6 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 			windowEl.style.top = '100%';
 			windowEl.style.width = '0px';
 			windowEl.style.height = '0px';
-			windowEl.addEventListener('transitionend', () => (windowEl.style.transition = ''));
 		} else {
 			// if first render do nothing
 			if (!isFirstRender) {
@@ -88,6 +90,8 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 				windowEl.style.height = data.last.height;
 			}
 		}
+
+		return () => windowEl.removeEventListener('transitionend', removeTransition);
 	}, [data.minimized]);
 
 	const handleFocus = () => {
