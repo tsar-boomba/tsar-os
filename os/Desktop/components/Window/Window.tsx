@@ -46,10 +46,10 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 		const isFirstRender = data.last.height === '';
 		if (!windowRef.current) throw new Error('No window element found on ref.');
 		const windowEl = windowRef.current;
-		windowEl.style.transition =
-			'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
 
 		if (data.minimized) {
+			windowEl.style.transition =
+				'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
 			const thisAppIndex = apps.findIndex((app) => app.name === name);
 			const LOGO_WIDTH = 36;
 			const APP_ICON_WIDTH = 46;
@@ -81,6 +81,8 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 		} else {
 			// if first render do nothing
 			if (!isFirstRender) {
+				windowEl.style.transition =
+					'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
 				// returning to last position
 				windowEl.style.left = data.last.left;
 				windowEl.style.top = data.last.top;
