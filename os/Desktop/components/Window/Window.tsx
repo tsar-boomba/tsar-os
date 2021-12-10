@@ -43,14 +43,19 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 
 	// handling minimize state
 	useEffect(() => {
+		const isFirstRender = data.last.height === '';
+		if (!windowRef.current || !titleBarRef.current)
+			throw new Error('No window element found on ref.');
+		const windowEl = windowRef.current;
+		const prevTransition = windowEl.style.transition;
+		windowEl.style.transition =
+			'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
+
 		if (data.minimized) {
-			console.log('minimizing');
-			if (!windowRef.current) throw new Error('No window element found on ref.');
-			const windowEl = windowRef.current;
 			const thisAppIndex = apps.findIndex((app) => app.name === name);
 			const LOGO_WIDTH = 36;
 			const APP_ICON_WIDTH = 46;
-			const targetX = LOGO_WIDTH + (thisAppIndex + 1) * (APP_ICON_WIDTH / 2);
+			const targetX = LOGO_WIDTH + (thisAppIndex + 1) * APP_ICON_WIDTH;
 
 			// saving last position
 			const styles = getComputedStyle(windowEl);
@@ -64,24 +69,24 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 				},
 			});
 
-			windowEl.style.transition = 'top 0.3s ease, bottom 0.3s ease, transform 0.3s ease';
-
 			windowEl.style.left = `${targetX}px`;
 			windowEl.style.top = '100%';
-			windowEl.style.transform = 'scale(0)';
-
-			windowEl.style.transition = '';
+			windowEl.style.width = '0px';
+			windowEl.style.height = '0px';
 		} else {
-			if (!windowRef.current) throw new Error('No window element found on ref.');
-			const windowEl = windowRef.current;
-
-			// returning to last position
-			windowEl.style.left = data.last.left;
-			windowEl.style.top = data.last.top;
-			windowEl.style.width = data.last.width;
-			windowEl.style.height = data.last.height;
-			windowEl.style.transform = 'scale(1)';
+			// if first render do nothing
+			if (!isFirstRender) {
+				// returning to last position
+				windowEl.style.left = data.last.left;
+				windowEl.style.top = data.last.top;
+				windowEl.style.width = data.last.width;
+				windowEl.style.height = data.last.height;
+			}
 		}
+		windowEl.ontransitionend = () => {
+			console.log('transition ended');
+			windowEl.style.transition = prevTransition;
+		};
 	}, [data.minimized]);
 
 	const handleFocus = () => {
