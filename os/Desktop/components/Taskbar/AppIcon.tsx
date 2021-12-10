@@ -6,7 +6,7 @@ import discordIcon from '@/public/images/discord-icon.ico';
 
 interface Props {
 	name: string;
-	icon: string;
+	icon: string | StaticImageData;
 }
 
 const AppIcon: React.VFC<Props> = ({ name, icon }) => {
@@ -46,7 +46,7 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 			onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#a5a5a5')}
 			onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = defaultBGColor)}
 		>
-			{icon.includes('https://') ? (
+			{(typeof icon === 'string' && icon.includes('https://')) || typeof icon === 'object' ? (
 				<Image src={discordIcon} alt={`${name} icon`} width={30} height={30} />
 			) : (
 				name
