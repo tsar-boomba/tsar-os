@@ -1,5 +1,6 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { AppsContext, OSApp } from '../../context/AppsContext';
+import Fullscreen from './Fullscreen';
 import Minimizer from './Minimizer';
 import Resizers from './Resizers';
 import styles from './Window.module.scss';
@@ -28,13 +29,12 @@ interface Props {
 }
 
 const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) => {
-	const { apps, opened, setOpened } = useContext(AppsContext);
+	const { opened, setOpened } = useContext(AppsContext);
 	const titleBarRef = useRef<HTMLDivElement>(null);
 	const windowRef = useRef<HTMLDivElement>(null);
-	const [windowIndex, setWindowIndex] = useState(opened.findIndex((app) => app.name === name));
 	const closeWindow = () => {
 		const newOpened = [...opened];
-		newOpened.splice(windowIndex, 1);
+		newOpened.splice(data.index, 1);
 		setOpened(newOpened);
 	};
 
@@ -48,18 +48,21 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 	};
 
 	// updating this window's zIndex when opened changes
-	useEffect(() => setWindowIndex(opened.findIndex((app) => app.name === name)), [opened]);
+	useEffect(
+		() => setData({ ...data, index: opened.findIndex((app) => app.name === name) }),
+		[opened],
+	);
 
 	const handleFocus = () => {
 		const tempOpened = [...opened];
-		const thisWindow = tempOpened.splice(windowIndex, 1);
+		const thisWindow = tempOpened.splice(data.index, 1);
 		const newOpened = [...tempOpened, thisWindow[0]];
 		setOpened(newOpened);
 	};
 
 	return (
 		<div
-			style={{ zIndex: windowIndex }}
+			style={{ zIndex: data.index }}
 			onMouseDown={handleFocus}
 			className={styles.container}
 			ref={windowRef}
@@ -72,6 +75,9 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 
 			{/* Handles minimizing window */}
 			<Minimizer {...baseProps} name={name} />
+
+			{/* Handles fullscreen */}
+			<Fullscreen {...baseProps} name={name} />
 		</div>
 	);
 };

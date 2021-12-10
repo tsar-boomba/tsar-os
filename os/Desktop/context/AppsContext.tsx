@@ -10,6 +10,7 @@ export interface OSApp {
 	icon: string | StaticImageData;
 	setData: React.Dispatch<React.SetStateAction<OSApp['data']>>;
 	data: {
+		index: number;
 		minimized: boolean;
 		fullscreen: boolean;
 		last: {

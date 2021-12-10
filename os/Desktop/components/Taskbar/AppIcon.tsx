@@ -17,10 +17,18 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 
 	const defaultBGColor = isOpen && !thisApp.data.minimized ? '#8d8d8d' : '';
 
+	const bringAppToFront = () => {
+		const tempOpened = [...opened];
+		const thisWindow = tempOpened.splice(thisApp.data.index, 1);
+		const newOpened = [...tempOpened, thisWindow[0]];
+		setOpened(newOpened);
+	};
+
 	const handleIconClick = () => {
 		// if an app with this name is opened, do not proceed
 		if (opened.find((app) => app.name === thisApp.name)) {
 			if (thisApp.data.minimized) {
+				bringAppToFront();
 				return thisApp.setData({ ...thisApp.data, minimized: false });
 			} else {
 				return thisApp.setData({ ...thisApp.data, minimized: true });

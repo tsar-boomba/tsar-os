@@ -11,17 +11,21 @@ const Main = () => {
 
 	return (
 		<div className={styles.container}>
-			{opened.map(({ component, titleBarComponent, name, icon }, index) => (
-				<Window
-					App={component}
-					TitleBar={titleBarComponent || DefaultTitleBar}
-					name={name}
-					icon={icon}
-					setData={apps[index].setData}
-					data={apps[index].data}
-					key={name}
-				/>
-			))}
+			{opened.map(({ component, titleBarComponent, name, icon }) => {
+				const thisAppIndex = apps.findIndex((app) => app.name === name);
+
+				return (
+					<Window
+						App={component}
+						TitleBar={titleBarComponent || DefaultTitleBar}
+						name={name}
+						icon={icon}
+						setData={apps[thisAppIndex].setData}
+						data={apps[thisAppIndex].data}
+						key={name}
+					/>
+				);
+			})}
 			<div className={styles.background}>
 				<Image
 					src={defaultBackground}

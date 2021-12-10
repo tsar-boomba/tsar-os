@@ -10,6 +10,13 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 		if (!windowRef.current) throw new Error('No window element found on ref.');
 		const windowEl = windowRef.current;
 
+		const styles = getComputedStyle(windowEl);
+		// have to set these in inline or else transition don't work
+		windowEl.style.left = styles.left;
+		windowEl.style.top = styles.top;
+		windowEl.style.width = styles.width;
+		windowEl.style.height = styles.height;
+
 		const removeTransition = () => (windowEl.style.transition = '');
 		windowEl.addEventListener('transitionend', removeTransition);
 
@@ -22,22 +29,17 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 			const targetX = LOGO_WIDTH + thisAppIndex * APP_ICON_WIDTH;
 
 			// saving last position
-			const styles = getComputedStyle(windowEl);
-			setData({
-				...data,
-				last: {
-					top: styles.top,
-					left: styles.left,
-					width: styles.width,
-					height: styles.height,
-				},
-			});
-
-			// have to set these in inline or else transition don't work
-			windowEl.style.left = styles.left;
-			windowEl.style.top = styles.top;
-			windowEl.style.width = styles.width;
-			windowEl.style.height = styles.height;
+			if (!data.fullscreen) {
+				setData({
+					...data,
+					last: {
+						top: styles.top,
+						left: styles.left,
+						width: styles.width,
+						height: styles.height,
+					},
+				});
+			}
 
 			windowEl.style.left = `${targetX}px`;
 			windowEl.style.top = '100%';
@@ -48,6 +50,16 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 			if (!isFirstRender) {
 				windowEl.style.transition =
 					'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
+
+				// if fullscreen return to fullscreen
+				if (data.fullscreen) {
+					windowEl.style.top = '0px';
+					windowEl.style.left = '0px';
+					windowEl.style.width = '100vw';
+					windowEl.style.height = '100vh';
+					return;
+				}
+
 				// returning to last position
 				windowEl.style.left = data.last.left;
 				windowEl.style.top = data.last.top;

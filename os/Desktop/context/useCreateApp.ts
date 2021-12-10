@@ -5,6 +5,7 @@ type WithoutData = Omit<OSApp, 'setData' | 'data'>;
 
 const useCreateApp = ({ component, titleBarComponent, name, icon }: WithoutData) => {
 	const [appData, setAppData] = useState<OSApp['data']>({
+		index: 0,
 		minimized: false,
 		fullscreen: false,
 		last: {
