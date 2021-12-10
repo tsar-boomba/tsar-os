@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react';
+import { useContext } from 'react';
 import { AppsContext } from '../../context/AppsContext';
 import styles from './Taskbar.module.scss';
 import Image from 'next/image';

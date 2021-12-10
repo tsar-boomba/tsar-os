@@ -44,10 +44,8 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 	// handling minimize state
 	useEffect(() => {
 		const isFirstRender = data.last.height === '';
-		if (!windowRef.current || !titleBarRef.current)
-			throw new Error('No window element found on ref.');
+		if (!windowRef.current) throw new Error('No window element found on ref.');
 		const windowEl = windowRef.current;
-		const prevTransition = windowEl.style.transition;
 		windowEl.style.transition =
 			'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
 
@@ -55,7 +53,7 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 			const thisAppIndex = apps.findIndex((app) => app.name === name);
 			const LOGO_WIDTH = 36;
 			const APP_ICON_WIDTH = 46;
-			const targetX = LOGO_WIDTH + (thisAppIndex + 1) * APP_ICON_WIDTH;
+			const targetX = LOGO_WIDTH + thisAppIndex * APP_ICON_WIDTH;
 
 			// saving last position
 			const styles = getComputedStyle(windowEl);
@@ -69,10 +67,17 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 				},
 			});
 
+			// have to set these in inline or else transition don't work
+			windowEl.style.left = styles.left;
+			windowEl.style.top = styles.top;
+			windowEl.style.width = styles.width;
+			windowEl.style.height = styles.height;
+
 			windowEl.style.left = `${targetX}px`;
 			windowEl.style.top = '100%';
 			windowEl.style.width = '0px';
 			windowEl.style.height = '0px';
+			windowEl.addEventListener('transitionend', () => (windowEl.style.transition = ''));
 		} else {
 			// if first render do nothing
 			if (!isFirstRender) {
@@ -83,10 +88,6 @@ const Window: React.VFC<Props> = ({ App, TitleBar, name, icon, setData, data }) 
 				windowEl.style.height = data.last.height;
 			}
 		}
-		windowEl.ontransitionend = () => {
-			console.log('transition ended');
-			windowEl.style.transition = prevTransition;
-		};
 	}, [data.minimized]);
 
 	const handleFocus = () => {
