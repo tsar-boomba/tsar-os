@@ -45,8 +45,8 @@ const Fullscreen: React.VFC<BaseProps & { name: string }> = ({
 
 			windowEl.style.top = '0px';
 			windowEl.style.left = '0px';
-			windowEl.style.width = '100vw';
-			windowEl.style.height = '100vh';
+			windowEl.style.width = '100%';
+			windowEl.style.height = '100%';
 		} else {
 			if (!isFirstRender) {
 				windowEl.style.transition =
