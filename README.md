@@ -6,4 +6,4 @@ Tsar OS is a showcase of React and scss. You can open application, move windows,
 
 ## Hosting
 
-Currently (hosted by Vercel at https://tsar-os.vercel.app/)[https://tsar-os.vercel.app]
+Currently [hosted by Vercel at https://tsar-os.vercel.app/](https://tsar-os.vercel.app)
