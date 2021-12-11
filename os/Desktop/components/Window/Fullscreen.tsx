@@ -26,8 +26,6 @@ const Fullscreen: React.VFC<BaseProps & { name: string }> = ({
 		const resetTransition = () => (windowEl.style.transition = '');
 		windowEl.addEventListener('transitionend', resetTransition);
 
-		console.log('fullscween');
-
 		if (data.fullscreen) {
 			windowEl.style.transition =
 				'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
