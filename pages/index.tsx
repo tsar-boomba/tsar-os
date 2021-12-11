@@ -28,8 +28,8 @@ const Home: NextPage = () => {
 				}}
 			>
 				IMG / GIF here
-				<Link href='/start'>
-					<a className={styles.start}>Get Started</a>
+				<Link href='/os'>
+					<a className={styles.start}>Open Tsar OS</a>
 				</Link>
 			</div>
 
