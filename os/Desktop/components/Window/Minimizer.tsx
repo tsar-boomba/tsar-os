@@ -16,13 +16,14 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 		windowEl.style.top = styles.top;
 		windowEl.style.width = styles.width;
 		windowEl.style.height = styles.height;
+		windowEl.style.opacity = '1';
 
 		const removeTransition = () => (windowEl.style.transition = '');
 		windowEl.addEventListener('transitionend', removeTransition);
 
 		if (data.minimized) {
 			windowEl.style.transition =
-				'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
+				'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease, opacity 0.15s ease';
 			const thisAppIndex = apps.findIndex((app) => app.name === name);
 			const LOGO_WIDTH = 36;
 			const APP_ICON_WIDTH = 46;
@@ -45,11 +46,12 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 			windowEl.style.top = '100%';
 			windowEl.style.width = '0px';
 			windowEl.style.height = '0px';
+			windowEl.style.opacity = '0';
 		} else {
 			// if first render do nothing
 			if (!isFirstRender) {
 				windowEl.style.transition =
-					'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease';
+					'top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease, opacity 0.25s ease';
 
 				// if fullscreen return to fullscreen
 				if (data.fullscreen) {
@@ -57,6 +59,7 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 					windowEl.style.left = '0px';
 					windowEl.style.width = '100vw';
 					windowEl.style.height = '100vh';
+					windowEl.style.opacity = '1';
 					return;
 				}
 
@@ -65,6 +68,7 @@ const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, s
 				windowEl.style.top = data.last.top;
 				windowEl.style.width = data.last.width;
 				windowEl.style.height = data.last.height;
+				windowEl.style.opacity = '1';
 			}
 		}
 
