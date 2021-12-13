@@ -43,7 +43,7 @@ export const handleTitleBarDrag = (
 		document.removeEventListener('mouseup', handleMouseUp);
 	};
 
-	return (e: React.MouseEvent & { target: any }) => {
+	return (e: React.MouseEvent & { target: Node }) => {
 		if (buttonsRef.current) {
 			if (buttonsRef.current.contains(e.target)) {
 				e.stopPropagation();

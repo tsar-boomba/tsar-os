@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { AppsContext } from '../../context/AppsContext';
 import styles from './Taskbar.module.scss';
 import Image from 'next/image';
-import discordIcon from '@/public/images/discord-icon.ico';
 
 interface Props {
 	name: string;
@@ -47,7 +46,7 @@ const AppIcon: React.VFC<Props> = ({ name, icon }) => {
 			onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = defaultBGColor)}
 		>
 			{(typeof icon === 'string' && icon.includes('https://')) || typeof icon === 'object' ? (
-				<Image src={discordIcon} alt={`${name} icon`} width={30} height={30} />
+				<Image src={icon} alt={`${name} icon`} width={30} height={30} />
 			) : (
 				name
 			)}

@@ -4,7 +4,10 @@ import useCreateApp from './useCreateApp';
 import dynamic from 'next/dynamic';
 
 // importing app components
+import discordIcon from '@/public/images/discord-icon.ico';
+
 const Minesweeper = dynamic(() => import('@/os/Apps/Minesweeper'));
+import minesweeperIcon from '@/public/images/minesweeper-icon.png';
 
 export interface OSApp {
 	component: React.VFC<AppProps> | React.ComponentType<AppProps>;
@@ -38,7 +41,7 @@ const AppsContextProvider: React.FC = ({ children }) => {
 		useCreateApp({
 			component: () => <p>discord</p>,
 			name: 'discord',
-			icon: 'https://discord.com/assets/847541504914fd33810e70a0ea73177e.ico',
+			icon: discordIcon,
 		}),
 		useCreateApp({
 			component: () => <p>chrome</p>,
@@ -48,7 +51,7 @@ const AppsContextProvider: React.FC = ({ children }) => {
 		useCreateApp({
 			component: Minesweeper,
 			name: 'Minesweeper',
-			icon: 'url',
+			icon: minesweeperIcon,
 		}),
 	];
 	const [opened, setOpened] = useState<appValues['opened']>([]);
