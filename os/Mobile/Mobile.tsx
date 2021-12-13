@@ -1,7 +1,11 @@
+import GestureBar from './components/GestureBar';
+import Main from './components/Main';
+
 const Mobile = () => {
 	return (
-		<div>
-			<h1>Mobile UI</h1>
+		<div style={{ display: 'flex', flexFlow: 'column', width: '100%', height: '100%' }}>
+			<Main />
+			<GestureBar />
 		</div>
 	);
 };
