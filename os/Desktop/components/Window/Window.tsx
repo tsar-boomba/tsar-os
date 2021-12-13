@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
-import { AppsContext, OSApp } from '../../context/AppsContext';
+import { AppsContext, OSApp } from '../../../context/AppsContext';
 import Fullscreen from './Fullscreen';
 import Minimizer from './Minimizer';
 import Resizers from './Resizers';
@@ -20,8 +20,8 @@ export interface TitleBarProps extends BaseProps {
 }
 
 interface Props {
-	App: React.VFC<AppProps>;
-	TitleBar: React.VFC<TitleBarProps>;
+	App: React.VFC<AppProps> | React.ComponentType<AppProps>;
+	TitleBar: React.VFC<TitleBarProps> | React.ComponentType<AppProps>;
 	name: string;
 	icon: string | StaticImageData;
 	setData: OSApp['setData'];

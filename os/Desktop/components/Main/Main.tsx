@@ -2,7 +2,7 @@ import styles from './Main.module.scss';
 import Image from 'next/image';
 import defaultBackground from '@/public/images/default-desktop.jpg';
 import { useContext } from 'react';
-import { AppsContext } from '../../context/AppsContext';
+import { AppsContext } from '../../../context/AppsContext';
 import Window from '../Window';
 import DefaultTitleBar from '../Window/DefaultTitleBar';
 

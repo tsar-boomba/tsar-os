@@ -1,7 +1,7 @@
 import AppsContextProvider from './AppsContext';
 
-const DesktopContext: React.FC = ({ children }) => {
+const OSContext: React.FC = ({ children }) => {
 	return <AppsContextProvider>{children}</AppsContextProvider>;
 };
 
-export default DesktopContext;
+export default OSContext;

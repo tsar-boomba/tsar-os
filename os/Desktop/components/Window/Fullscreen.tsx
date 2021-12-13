@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { AppsContext } from '../../context/AppsContext';
+import { AppsContext } from '../../../context/AppsContext';
 import { BaseProps } from './Window';
 
 const Fullscreen: React.VFC<BaseProps & { name: string }> = ({

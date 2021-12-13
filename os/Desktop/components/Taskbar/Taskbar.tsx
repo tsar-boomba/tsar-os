@@ -1,4 +1,4 @@
-import { AppsContext } from '@/os/Desktop/context/AppsContext';
+import { AppsContext } from '@/os/context/AppsContext';
 import { useContext } from 'react';
 import AppIcon from './AppIcon';
 import styles from './Taskbar.module.scss';

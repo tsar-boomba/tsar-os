@@ -1,12 +1,12 @@
 import { useState, createContext } from 'react';
-import { AppProps, TitleBarProps } from '../components/Window/Window';
+import { AppProps, TitleBarProps } from '../Desktop/components/Window/Window';
 import useCreateApp from './useCreateApp';
 import dynamic from 'next/dynamic';
 
 // importing app components
 import discordIcon from '@/public/images/discord-icon.ico';
 
-const Minesweeper = dynamic(() => import('@/os/Apps/Minesweeper'));
+const Minesweeper = dynamic(() => import('@/os/apps/Minesweeper'));
 import minesweeperIcon from '@/public/images/minesweeper-icon.png';
 
 export interface OSApp {
