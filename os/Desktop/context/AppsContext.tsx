@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { createContext } from 'react';
+import { useState, createContext } from 'react';
 import { AppProps, TitleBarProps } from '../components/Window/Window';
 import useCreateApp from './useCreateApp';
+import dynamic from 'next/dynamic';
+
+// importing app components
+const Minesweeper = dynamic(() => import('@/os/Apps/Minesweeper'));
 
 export interface OSApp {
-	component: React.VFC<AppProps>;
+	component: React.VFC<AppProps> | React.ComponentType<AppProps>;
 	titleBarComponent?: React.VFC<TitleBarProps>;
 	name: string;
 	icon: string | StaticImageData;
@@ -40,6 +43,11 @@ const AppsContextProvider: React.FC = ({ children }) => {
 		useCreateApp({
 			component: () => <p>chrome</p>,
 			name: 'chrome',
+			icon: 'url',
+		}),
+		useCreateApp({
+			component: Minesweeper,
+			name: 'Minesweeper',
 			icon: 'url',
 		}),
 	];

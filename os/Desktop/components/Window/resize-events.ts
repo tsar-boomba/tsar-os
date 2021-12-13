@@ -1,5 +1,3 @@
-import React from 'react';
-
 type Sides =
 	| 'top'
 	| 'right'
@@ -9,6 +7,7 @@ type Sides =
 	| 'bottom-right'
 	| 'bottom-left'
 	| 'top-left';
+
 export const handleResizeMouseDown = (side: Sides, windowRef: React.RefObject<HTMLDivElement>) => {
 	// globals for all handlers
 	let mouseX = 0;
