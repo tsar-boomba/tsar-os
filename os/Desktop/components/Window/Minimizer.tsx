@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { AppsContext } from '../../../context/AppsContext';
-import { BaseProps } from './Window';
+import { AppsContext, BaseProps } from '../../../context/AppsContext';
 
 const Minimizer: React.VFC<BaseProps & { name: string }> = ({ windowRef, data, setData, name }) => {
 	const { apps } = useContext(AppsContext);

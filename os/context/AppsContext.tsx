@@ -1,5 +1,4 @@
 import { useState, createContext } from 'react';
-import { AppProps, TitleBarProps } from '../Desktop/components/Window/Window';
 import useCreateApp from './useCreateApp';
 import dynamic from 'next/dynamic';
 
@@ -8,6 +7,20 @@ import discordIcon from '@/public/images/discord-icon.ico';
 
 const Minesweeper = dynamic(() => import('../../os/apps/Minesweeper'));
 import minesweeperIcon from '@/public/images/minesweeper-icon.png';
+
+export interface BaseProps {
+	closeWindow: () => void;
+	titleBarRef: React.RefObject<HTMLDivElement>;
+	windowRef: React.RefObject<HTMLDivElement>;
+	data: OSApp['data'];
+	setData: OSApp['setData'];
+}
+
+export interface AppProps extends BaseProps {}
+
+export interface TitleBarProps extends BaseProps {
+	content: string;
+}
 
 export interface OSApp {
 	component: React.VFC<AppProps> | React.ComponentType<AppProps>;

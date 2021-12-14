@@ -1,27 +1,19 @@
 import { useContext, useEffect, useRef } from 'react';
-import { AppsContext, OSApp } from '../../../context/AppsContext';
+import {
+	AppProps,
+	AppsContext,
+	BaseProps,
+	OSApp,
+	TitleBarProps,
+} from '../../../context/AppsContext';
 import Fullscreen from './Fullscreen';
 import Minimizer from './Minimizer';
 import Resizers from './Resizers';
 import styles from './Window.module.scss';
 
-export interface BaseProps {
-	closeWindow: () => void;
-	titleBarRef: React.RefObject<HTMLDivElement>;
-	windowRef: React.RefObject<HTMLDivElement>;
-	data: OSApp['data'];
-	setData: OSApp['setData'];
-}
-
-export interface AppProps extends BaseProps {}
-
-export interface TitleBarProps extends BaseProps {
-	content: string;
-}
-
 interface Props {
 	App: React.VFC<AppProps> | React.ComponentType<AppProps>;
-	TitleBar: React.VFC<TitleBarProps> | React.ComponentType<AppProps>;
+	TitleBar: React.VFC<TitleBarProps> | React.ComponentType<TitleBarProps>;
 	name: string;
 	icon: string | StaticImageData;
 	setData: OSApp['setData'];

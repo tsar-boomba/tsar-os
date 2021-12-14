@@ -1,4 +1,4 @@
-import { AppProps } from '@/os/Desktop/components/Window/Window';
+import { AppProps } from '@/os/context/AppsContext';
 
 const Minesweeper: React.VFC<AppProps> = () => {
 	return (

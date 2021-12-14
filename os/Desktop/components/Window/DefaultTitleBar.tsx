@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { handleTitleBarDrag } from './drag-events';
-import { TitleBarProps } from './Window';
+import { TitleBarProps } from '../../../context/AppsContext';
 import styles from './Window.module.scss';
 
 const DefaultTitleBar: React.VFC<TitleBarProps> = ({
