@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 // importing app components
 import discordIcon from '@/public/images/discord-icon.ico';
 
-const Minesweeper = dynamic(() => import('@/os/apps/Minesweeper'));
+const Minesweeper = dynamic(() => import('../../os/apps/Minesweeper'));
 import minesweeperIcon from '@/public/images/minesweeper-icon.png';
 
 export interface OSApp {
