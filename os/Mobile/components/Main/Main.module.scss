@@ -15,10 +15,12 @@
 .app-icon {
 	@include flex-center;
 	flex-direction: column;
-	transition: outline 0.05s ease;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
 
-	&:active {
-		outline: 4px solid white;
+	&:active,
+	&:hover {
+		background-color: gray;
 	}
 
 	&-wrapper {
