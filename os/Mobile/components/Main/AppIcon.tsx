@@ -13,7 +13,7 @@ const AppIcon: React.VFC<OSApp> = ({ name, icon }) => {
 						style={{ width: 30, height: 30, borderRadius: 6, backgroundColor: 'white' }}
 					/>
 				)}
-				{name}
+				<p>{name.length > 12 ? name.slice(0, 10) + '...' : name}</p>
 			</div>
 		</div>
 	);
