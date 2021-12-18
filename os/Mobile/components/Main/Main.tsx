@@ -1,7 +1,10 @@
+import AppGrid from './AppGrid';
+import styles from './Main.module.scss';
+
 const Main = () => {
 	return (
-		<div>
-			<p>main content</p>
+		<div className={styles.container}>
+			<AppGrid />
 		</div>
 	);
 };

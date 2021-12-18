@@ -1,0 +1,19 @@
+@use 'mixins.module' as *;
+
+.container {
+	@include flex-center;
+	position: absolute;
+	bottom: 0;
+	align-self: center;
+	padding: 8px 0 24px 0;
+	width: 100%;
+	z-index: 999;
+	cursor: pointer;
+}
+
+.bar {
+	background-color: white;
+	width: 70%;
+	height: 8px;
+	border-radius: 4px;
+}

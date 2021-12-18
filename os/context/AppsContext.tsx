@@ -59,7 +59,7 @@ const AppsContextProvider: React.FC = ({ children }) => {
 		useCreateApp({
 			component: () => <p>chrome</p>,
 			name: 'chrome',
-			icon: 'url',
+			icon: '',
 		}),
 		useCreateApp({
 			component: Minesweeper,

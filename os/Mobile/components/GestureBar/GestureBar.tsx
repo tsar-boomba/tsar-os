@@ -1,7 +1,9 @@
+import styles from './GestureBar.module.scss';
+
 const GestureBar = () => {
 	return (
-		<div>
-			<span style={{ backgroundColor: 'white' }}></span>
+		<div className={styles.container}>
+			<span className={styles.bar} />
 		</div>
 	);
 };
