@@ -10,7 +10,7 @@ import minesweeperIcon from '@/public/images/minesweeper-icon.png';
 
 export interface BaseProps {
 	closeWindow: () => void;
-	titleBarRef: React.RefObject<HTMLDivElement>;
+	titleBarRef?: React.RefObject<HTMLDivElement>;
 	windowRef: React.RefObject<HTMLDivElement>;
 	data: OSApp['data'];
 	setData: OSApp['setData'];
