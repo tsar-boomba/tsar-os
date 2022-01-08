@@ -15,7 +15,8 @@ const DefaultTitleBar: React.VFC<TitleBarProps> = ({
 
 	// stop transition events from buttons from messing with fullscreen and minimize
 	useEffect(() => {
-		if (titleBarRef.current) titleBarRef.current.ontransitionend = (e) => e.stopPropagation();
+		if (titleBarRef && titleBarRef.current)
+			titleBarRef.current.ontransitionend = (e) => e.stopPropagation();
 	}, []);
 
 	return (
